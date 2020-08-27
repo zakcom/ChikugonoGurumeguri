@@ -1,5 +1,5 @@
 <header class="mb-4">
-   <nav class="navbar navbar-expand-sm navbar-gray bg-pink">
+   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
        {{-- トップページへのリンク --}}
        <a class="navbar-brand" href="/">ちっご巡り</a>
        
