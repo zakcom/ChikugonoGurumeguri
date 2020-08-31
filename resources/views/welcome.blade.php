@@ -1,6 +1,10 @@
 @extends ('layouts.app')
 
 @section('content')
+    @if(Auth::check())
+    {{ Auth::user()->name }}
+    
+    @else
     <div class="jumbotron">
         
         <div class="container">
@@ -10,4 +14,5 @@
         </div>
         
     </div>
+    @endif
 @endsection

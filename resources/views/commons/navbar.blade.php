@@ -10,11 +10,28 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                {{-- ユーザー登録ページへのリンク　--}}
-               {!! link_to_route('signup.get', '新規登録', [], ['class' => 'btn btn-lg btn-success']) !!}
+                @if (Auth::check())
+                    {{-- ユーザー一覧ページへのリンク --}}
+                    <li class="nav-item"><a href="#" class="nav-link">ユーザー一覧</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                        <ul class="dropdown-menu dropdown-menu-right" >
+                             {{-- ユーザ詳細ページへのリンク --}}
+                             <li class="dropdown-item"><a href="#">マイプロフィール</a></li>
+                             <li class="dropdown-divider"></li>
+                             {{-- ログアウトへのリンク --}}
+                             <li class="dropdown-item">{!! link_to_route('logout.get','ログアウト') !!}</li>
+                             
+                        </ul>
+                        
+                    </li>
+                @else
+                    {{-- ユーザー登録ページへのリンク　--}}
+                   <li class="nav-item">{!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav-link']) !!}</li>
                 
-                {{-- ログインページへのリンク　--}}
-                <li class="nav-item"><a href="#"　class="nav-link">ログイン</a></li>
+                    {{-- ログインページへのリンク　--}}
+                   <li class="nav-item">{{!! link_to_route('login', 'ログイン',  [], ['class' => 'nav-link']) !!}</li>
+                @endif
             </ul>
         </div>
 　　</nav> 
