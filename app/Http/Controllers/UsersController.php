@@ -21,6 +21,10 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         
-        return view('users.show', ['user' => $user] );
+        $user->loadRelationshipCounts();
+        
+        $courses = $user->courses()->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('users.show', ['user' => $user, 'courses' => $courses] );
     }
 }

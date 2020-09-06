@@ -24,13 +24,17 @@
                </div>
            </div>
            
-           <div class="card">
-               <div class="card-header">
-                   <h4 class='text-center'>タイムライン</h4>
-               </div>
-               <div class="card-body">
-                   
-               </div>
+           <ul class="nav nav-tabs nav-justified mb-3">
+               {{-- ユーザー詳細タブ--}}
+               <li class="nav-item">
+                   <a href="{{ route('users.show', ['user'=> $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active':''}}" >
+                      タイムライン
+                    <span class="bage bage-secondary">{{ $user->courses_count }}</span>  
+                   </a>
+               </li>
+               {{-- フォロー一覧 --}}
+               {{-- フォロワー一覧 --}}
+           </ul>
         </div>
     </div>
 @endsection

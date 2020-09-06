@@ -36,4 +36,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * このユーザが所有するコース。（ courseモデルとの関係を定義）
+     */
+     public function courses()
+     {
+         return $this->hasmany(Course::class);
+     }
+     
+     public function loadRelationshipCounts()
+     {
+         $this->loadCount('courses');
+     }
 }
