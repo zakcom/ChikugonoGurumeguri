@@ -19,6 +19,8 @@
                              {{-- ユーザ詳細ページへのリンク --}}
                              <li class="dropdown-item">{!! link_to_route('users.show', 'プロフィール', ['user' => Auth::id()]) !!}</li>
                              <li class="dropdown-divider"></li>
+                             {{-- プロフィール作成ページへのリンク --}}
+                             <li class="dropdown-item">{!! link_to_route('profile.create','プロフィール設定', ['user' => Auth::id()]) !!}</li>
                              {{-- コース作成ページへのリンク --}}
                              <li class="dropdown-item">{!! link_to_route('courses.create','コース作成', ['user' => Auth::id()]) !!}</li>
                              {{-- ログアウトへのリンク --}}

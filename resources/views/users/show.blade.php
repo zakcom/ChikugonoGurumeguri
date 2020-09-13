@@ -10,9 +10,11 @@
                 <div class="card-body">
                     <h3 class="card-title">プロフィール</h3>
                     {{--　画像 --}}
-                    <p class="card-text">おおきにです！</p>
+                    <img src="/image/{{ $user->profile_img }}">
                 </div>
             </div>
+            {{--  フォロー/アンフォローボタン --}}
+             @include('user_follow.follow_button')
         </aside>
         <div class="col-sm-8">
            <div class="card">
@@ -23,18 +25,20 @@
                    
                </div>
            </div>
+           {{-- タブ --}}
+           @include('users.navtabs')
            
-           <ul class="nav nav-tabs nav-justified mb-3">
-               {{-- ユーザー詳細タブ--}}
-               <li class="nav-item">
-                   <a href="{{ route('users.show', ['user'=> $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active':''}}" >
-                      タイムライン
-                    <span class="bage bage-secondary">{{ $user->courses_count }}</span>  
-                   </a>
-               </li>
-               {{-- フォロー一覧 --}}
-               {{-- フォロワー一覧 --}}
-           </ul>
+           <!--<ul class="nav nav-tabs nav-justified mb-3">-->
+           <!--    {{-- ユーザー詳細タブ--}}-->
+           <!--    <li class="nav-item">-->
+           <!--        <a href="{{ route('users.show', ['user'=> $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active':''}}" >-->
+           <!--           タイムライン-->
+           <!--         <span class="bage bage-secondary">{{ $user->courses_count }}</span>  -->
+           <!--        </a>-->
+           <!--    </li>-->
+           <!--    {{-- フォロー一覧 --}}-->
+           <!--    {{-- フォロワー一覧 --}}-->
+           <!--</ul>-->
         </div>
     </div>
 @endsection

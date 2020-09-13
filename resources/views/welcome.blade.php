@@ -10,8 +10,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">プロフィール</h3>
-                    {{--　画像 --}}
-                    <p class="card-text">おおきにです！</p>
+                    <img src="/image/{{ $user->profile_img }}">
                     </div>
                 </div>
             </aside>
@@ -31,13 +30,12 @@
     
     @else
     <div class="jumbotron">
-        
+       
         <div class="container">
             <h1>みんなで作る「ちっごのコース」</h1>
             {{-- ユーザー登録ページへのリンク --}}
             {!! link_to_route('signup.get', '今すぐ登録', [], ['class' => 'btn btn-lg  btn-success']) !!}
         </div>
-        
     </div>
     @endif
 @endsection
