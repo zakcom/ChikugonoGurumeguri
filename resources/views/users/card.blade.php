@@ -5,7 +5,7 @@
     <div class="card-body">
         <h3 class="card-title">プロフィール</h3>
         {{--　画像 --}}
-        <img src="/image/{{ $user->profile_img }}">
+        <img src="/uploads/{{ $user->profile_img}}">
     </div>
 </div>
             {{--  フォロー/アンフォローボタン --}}

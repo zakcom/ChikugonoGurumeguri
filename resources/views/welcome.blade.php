@@ -4,15 +4,18 @@
     @if(Auth::check())
         <div class="row">
             <aside class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">{{ Auth::user()->name}}</h3>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">プロフィール</h3>
-                    <img src="/image/{{ $user->profile_img }}">
-                    </div>
-                </div>
+            {{-- ユーザ情報 --}}
+            @include('users.card')
+            <!--<aside class="col-sm-4">-->
+            <!--    <div class="card">-->
+            <!--        <div class="card-header">-->
+            <!--            <h3 class="card-title">{{ Auth::user()->name}}</h3>-->
+            <!--        </div>-->
+            <!--        <div class="card-body">-->
+            <!--            <h3 class="card-title">プロフィール</h3>-->
+            <!--        <img src="/image/{{ $user->profile_img }}">-->
+            <!--        </div>-->
+            <!--    </div>-->
             </aside>
             <div class="col-sm-8">
                 <div class="card">
@@ -24,11 +27,11 @@
                          @include('courses.courses')
                     </div>
                 </div>
-               
             </div>
         </div>
     
     @else
+    @include('template.template')
     <div class="jumbotron">
        
         <div class="container">

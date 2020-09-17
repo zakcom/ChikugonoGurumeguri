@@ -9,12 +9,12 @@ class CoursesController extends Controller
     public function index() 
     {
         $data = [];
-        if(\Auth::check())// 認証済みの場合
+        if(\Auth::check())
             // 認証済みユーザを取得
         {
             $user = \Auth::user();
             // ユーザのコース一覧を作成日時の降順で取得
-            $courses = $user->courses()->orderBy('created_at', 'desc')->paginate(10);
+            $courses = $user->feed_courses()->orderBy('created_at', 'desc')->paginate(10);
             
             $data = [
                 'user' => $user,

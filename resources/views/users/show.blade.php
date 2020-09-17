@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h3 class="card-title">プロフィール</h3>
                     {{--　画像 --}}
-                    <img src="/image/{{ $user->profile_img }}">
+                     <img src="/uploads/{{ $user->profile_img}}">
                 </div>
             </div>
             {{--  フォロー/アンフォローボタン --}}
@@ -22,12 +22,15 @@
                    <h4 class="text-center">{{ $user->name }}さんのおすすめコース一覧</h4>
                </div>
                <div class="card-body">
-                   
+                  @include('courses.courses')
                </div>
-           </div>
-           {{-- タブ --}}
-           @include('users.navtabs')
-           
+                   
+            </div>
+             @include('users.navtabs')
+        </div>
+    </div>
+@endsection    
+         <!--</div>-->
            <!--<ul class="nav nav-tabs nav-justified mb-3">-->
            <!--    {{-- ユーザー詳細タブ--}}-->
            <!--    <li class="nav-item">-->
@@ -39,6 +42,5 @@
            <!--    {{-- フォロー一覧 --}}-->
            <!--    {{-- フォロワー一覧 --}}-->
            <!--</ul>-->
-        </div>
-    </div>
-@endsection
+        <!--</div>-->
+   

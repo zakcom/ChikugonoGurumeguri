@@ -9,7 +9,7 @@ class Profile extends Model
     // 参照させたいSQLのテーブル名を指定してあげる
     protected $table = 'profile';
     
-    protected $fillable = ['content', 'profile_img' ];
+    protected $fillable = ['content', 'profile_img', 'id','user_id'];
     
     public function user()
     {

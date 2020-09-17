@@ -9,7 +9,7 @@
             </div>
             <div>
                 {{--  コース内容　--}}
-                <p class="mb-0">{!! $course->courses_name !!}</p>
+                <p class="mb-0">{!! nl2br(e($course->courses_name)) !!}</p>
             </div>
             <div>
                 @if(\Auth::id() === $course->user_id)
