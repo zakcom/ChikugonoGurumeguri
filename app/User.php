@@ -138,12 +138,61 @@ class User extends Authenticatable
      
      public function loadRelationshipCounts()
      {
-         $this->loadCount('courses', 'followings', 'followers');
+         $this->loadCount('courses', 'followings', 'followers', 'favorites');
      }
+     
+      /**
+     * このユーザがお気に入り中の投稿。（ Userモデルとの関係を定義）
+     */
+     public function favorites()
+     {
+         return $this->belongsToMany(Course::class,'favorites', 'user_id', 'course_id')->withTimeStamps();
+     }
+     
      
     //  このユーザのプロフィール。（ profileモデルとの関係を定義）
      public function profile()
      {
          return $this->hasOne(Profile::class);
+     }
+     
+     
+     public function favorite($courseId)
+     {
+         // すでにお気に入りしているかの確認
+         $exist = $this->is_favoriting($courseId);
+         
+         if($exist){
+             return false;
+         }else{
+             $this->favorites()->attach($courseId);
+             return true;
+         }
+         
+     }
+     
+     public function unfavorite($courseId)
+     {
+         // すでにお気に入りしているかの確認
+        $exist = $this->is_favoriting($courseId);
+        
+        if($exist){
+            $this->favorites()->detach($courseId);
+            return true;
+        }else{
+            return false;
+        }
+     }
+     
+      /**
+     * 指定された $courseIdのコースをこのユーザがお気に入り中であるか調べる。フォロー中ならtrueを返す。
+     *
+     * @param  int  $userId
+     * @return bool
+     */
+     public function is_favoriting($courseId)
+     {
+         
+         return $this->favorites()->where('course_id', $courseId)->exists();
      }
 }

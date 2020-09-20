@@ -17,6 +17,7 @@
              @include('user_follow.follow_button')
         </aside>
         <div class="col-sm-8">
+             @include('users.navtabs')
            <div class="card">
                <div class="card-header">
                    <h4 class="text-center">{{ $user->name }}さんのおすすめコース一覧</h4>
@@ -24,9 +25,8 @@
                <div class="card-body">
                   @include('courses.courses')
                </div>
-                   
             </div>
-             @include('users.navtabs')
+            
         </div>
     </div>
 @endsection    

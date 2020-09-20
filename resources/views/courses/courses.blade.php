@@ -19,6 +19,21 @@
                   {!! Form::close() !!}
                 @endif
             </div>
+            <div>
+                @if(\Auth::check())
+                    @if(Auth::user()->is_favoriting($course->id))
+                    {{-- お気に入り解除ボタン --}}
+                    {!! Form::open(['route' => ['favorites.unfavorite', $course->id ], 'method' => 'delete']) !!}
+                    {!! Form::submit('お気に入り解除', ['class' => 'btn btn-danger btn-sm']) !!}
+                    {!! Form::close() !!}
+                    @else
+                     {{-- お気に入り登録ボタン --}}
+                    {!! Form::open(['route' => ['favorites.favorite', $course->id ], 'method' => 'store']) !!}
+                    {!! Form::submit('お気に入り登録', ['class' => 'btn btn-primary btn-sm']) !!}
+                    {!! Form::close() !!}
+                    @endif
+                @endif
+            </div>
         </li>
         @endforeach
     </ul>
