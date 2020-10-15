@@ -10,7 +10,7 @@
       @include('users.navtabs')
       <div class="card">
           <div class="card-header">
-              <h4 class="text-center">{{ $user->name }}さんのお気に入りコース一覧</h4>
+              <h4 class="text-center">{{ $user->name }}さんのお気に入りグルメ一覧</h4>
           </div>
           <div class="card-body">
               {{-- お気に入りコース一覧 --}}

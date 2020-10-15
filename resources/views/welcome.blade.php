@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.template')
 
 @section('content')
     @if(Auth::check())
@@ -20,7 +20,7 @@
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header">
-                       <h4 class="text-center">皆んなのおすすめコース一覧</h4> 
+                       <h4 class="text-center">皆んなのグルメレポート一覧</h4> 
                     </div>
                     <div class="card-bpdy">
                          {{-- コース一覧 --}}
@@ -31,11 +31,10 @@
         </div>
     
     @else
-    @include('template.template')
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-extend">
        
         <div class="container">
-            <h1>みんなで作る「ちっごのコース」</h1>
+            <h1 class="site-name">みんなで作る「ちっごのグルメ」</h1>
             {{-- ユーザー登録ページへのリンク --}}
             {!! link_to_route('signup.get', '今すぐ登録', [], ['class' => 'btn btn-lg  btn-success']) !!}
         </div>

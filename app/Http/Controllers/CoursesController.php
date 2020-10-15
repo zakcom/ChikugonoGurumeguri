@@ -24,16 +24,27 @@ class CoursesController extends Controller
         return view('welcome', $data);
     }
     
+    
+    
+    
     public function store(Request $request)
     {
         //バリデーション
         $request->validate([
            'courses_name' => 'required|max:255',
+           'adress' => 'required|max:255',
+           'menu' => 'required|max:255',
+           'content' => 'required|max:500',
+           'photo' => 'required|max:255'
             ]);
          
          // 認証済みユーザ（閲覧者）のコースとして作成（リクエストされた値をもとに作成）   
         $request->user()->courses()->create([
-            'courses_name' => $request->courses_name
+            'courses_name' => $request->courses_name,
+            'adress' => $request->adress,
+            'menu' => $request->menu,
+            'content' => $request->content,
+            'photo' => $request->photo
             ]);
         //前のURLへリダイレクト
         return redirect('/');
@@ -57,5 +68,13 @@ class CoursesController extends Controller
     public function create()
     {
         return view('courses.form');
+    }
+    
+    public function reports()
+    {
+         // データベースよりレポートを取得。withを使って投稿ユーザー名も取得するようにする。
+        $data = \App\Course::with(['user'])->get();
+        
+        return view('courses.show', ['data' => $data] );
     }
 }

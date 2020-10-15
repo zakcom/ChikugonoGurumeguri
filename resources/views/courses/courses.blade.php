@@ -8,8 +8,11 @@
                 <span class="text-muted">posted at{{ $course->created_at }}</span>
             </div>
             <div>
-                {{--  コース内容　--}}
-                <p class="mb-0">{!! nl2br(e($course->courses_name)) !!}</p>
+                <!--{{--  コース内容　--}}-->
+                <!--<p class="mb-0">{!! nl2br(e($course->courses_name)) !!}</p>-->
+                  {{-- レポートの詳細ページへのリンク --}}
+                {!! link_to_route('users.reports', $course->courses_name,  ['id' => $course->id]) !!}
+              
             </div>
             <div>
                 @if(\Auth::id() === $course->user_id)

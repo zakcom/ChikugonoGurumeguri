@@ -1,8 +1,8 @@
-<h3 class="text-center">プロフィール作成画面</h3>
-
+<h1>プロフィール作成画面</h1>
+<div class="row">
 {!! Form::open(['route' => 'profile.store','enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
-        {!! Form::label('profile_img', 'プロフィール写真')!!}
+        {!! Form::label('profile_img', 'profile_img')!!}
         {!! Form::file('profile_img') !!}
    </div> 
    
@@ -12,3 +12,4 @@
     </div>
         {!! Form::submit('プロフィールを設定する', ['class' => 'btn btn-info']) !!}
 {!! Form::close() !!}
+</div>

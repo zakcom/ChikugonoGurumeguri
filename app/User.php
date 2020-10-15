@@ -195,4 +195,7 @@ class User extends Authenticatable
          
          return $this->favorites()->where('course_id', $courseId)->exists();
      }
+     
+    
+     
 }
