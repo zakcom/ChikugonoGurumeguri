@@ -1,3 +1,8 @@
+
+<style>
+    body {background-color: #FFCCCC;}
+</style>
+
 <ul class="nav nav-tabs nav-justified mb-3">
     {{-- ユーザー詳細タブ--}}
     <li class="nav-item">

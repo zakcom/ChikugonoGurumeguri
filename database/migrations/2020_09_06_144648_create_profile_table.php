@@ -16,8 +16,8 @@ class CreateProfileTable extends Migration
         Schema::create('profile', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('profile_img');
-            $table->string('content');
+            $table->string('profile_img')->nullable();
+            $table->string('content')->nullable();
             $table->timestamps();
             
             // 外部キー制約

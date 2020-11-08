@@ -1,3 +1,10 @@
+<style>
+    img {
+        width:300px;
+        height:200px;
+    }
+</style>
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">{{ $user->name }}</h3>
@@ -10,7 +17,7 @@
         @endif
         {{-- 紹介文 --}}
         @if (!empty($user->profile->content))
-            <p>{{ $user->profile->content }}</p>
+            <p class="card">{{ $user->profile->content }}</p>
         @endif
     </div>
 </div>

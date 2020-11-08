@@ -1,6 +1,10 @@
  @extends ('layouts.app')
 
  @section('content')
+ <style>
+     body {background-color: #FFCCCC;}
+ </style>
+ 
      <div class="text-center">
          <h2>グルメレポートを作成する</h2>
      </div>

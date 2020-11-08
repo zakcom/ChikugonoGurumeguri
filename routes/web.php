@@ -40,13 +40,15 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
         Route::get('reports', 'CoursesController@reports')->name('users.reports');
-        Route::post('profile', 'ProfileController@create')->name('users.profile');
+        // Route::post('profile', 'ProfileController@create')->name('users.profile');
+        Route::get('profile', 'ProfileController@edit')->name('profile.edit');
+        Route::post('profile', 'ProfileController@update')->name('profile.update');
         
         
     });
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
     Route::resource('courses', 'CoursesController', ['only' => ['create', 'store','destroy']]);
-    Route::resource('profile', 'ProfileController', ['only' => ['index', 'create', 'store']]);
+    Route::resource('profile', 'ProfileController',['only' => ['create', 'store','index']]);
     
     Route::group(['prefix' => 'course/{id}'], function() {
         Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
