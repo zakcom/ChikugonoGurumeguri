@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -36,32 +37,16 @@ class ProfileController extends Controller
     
     public function store(Request $request )
     {
-        // if($request->isMethod('POST') && $request->file('profile_img') && $request->content){
-        // //storeメソッドで画像を指定のパスに保存
-        //     $path  = $request->file('profile_img')->store('public/img');
-        //     //  dd($request);
-        //     Profile::create(['profile_img' => basename($path), 'user_id' => \Auth::id(), 'content' => $request->content]);
-           
-        //     return redirect('/')->with(['success' => 'ファイルを保存しました']);
-        // }elseif($request->isMethod('POST') && $request->file('profile_img') || $request->content)
-        // {
-        //     $profile = new Profile;
-        //     $path = $request->file('profile_img')->store('public/img');
-        //     $profile->profile_img = basename($path);
-        //     $profile->content = $request->content;
-        //     $profile->save();
-        //     return redirect('/')->with(['success' => 'ファイルを保存しました']);
-        // }else
-        // {
-        //      return redirect('/');
-        // }
             $profile = new Profile;
        
         if($request->isMethod('POST') && $request->file('profile_img'))
         {
            //storeメソッドで画像を指定のパスに保存
-            $path  = $request->file('profile_img')->store('public/img'); 
-            $profile->profile_img = basename($path);
+            // $path  = $request->file('profile_img')->store('public/img'); 
+            $file = $request->file('profile_img');
+            $path = Storage::disk('s3')->putFile('/img', $file, 'public');
+            // $profile->profile_img = basename($path);
+            $profile->profile_img = Storage::disk('s3')->url($path);
             $profile->content = $request->content;
             $profile->user_id = \Auth::id();
             $profile->save();
@@ -77,19 +62,7 @@ class ProfileController extends Controller
             return redirect('/');
         }
         
-        
-        
-        
-            // return redirect('/');
-        
-         //指定した文字列とHTTP動詞が一致するかをMethodメソッドで調べる。
-        //  $profile = Profile::find($request->id);
-        //  if($request->isMethod('POST') && $request->{
-        // // //storeメソッドで画像を指定のパスに保存
-        //     $path  = $request->file('profile_img')->store('public/img');
-        //     Profile::create(['profile_img' => basename($path), 'user_id' => \Auth::id(), 'content' => $request->content]);
-        //  }
-    
+   
     }
     public function edit(Request $request)
     {
@@ -99,21 +72,17 @@ class ProfileController extends Controller
     
     public function update(Request $request)
     {
-        // $profile = Profile::find($request->id);
-        // // dd($profile);
-        // $path  = $request->file('profile_img')->store('public/img');
-        // // dd($path);
-        // $profile->profile_img = basename($path);
-        // $profile->content = $request->content;
-        // $profile->save();
         
         $profile = Profile::find($request->id);
         if (empty($request->file('profile_img')) && $request->content){
             $profile->content = $request->content;
             $profile->save();
         }elseif($request->file('profile_img') || $request->content){
-            $path = $request->file('profile_img')->store('public/img');
-            $profile->profile_img = basename($path);
+            // $path = $request->file('profile_img')->store('public/img');
+            $file = $request->file('profile_img');
+            $path = Storage::disk('s3')->putFile('/img', $file, 'public');
+            // $profile->profile_img = basename($path);
+            $profile->profile_img = Storage::disk('s3')->url($path);
             $profile->content = $request->content;
             $profile->save();
         }
@@ -125,10 +94,12 @@ class ProfileController extends Controller
         return redirect('/')->with(['success' => 'プロフィールを更新しました']);
       
         
-        // $profile = Profile::find($request->id);
-        // $form = $request->all();
-        // unset($form['_token']);
-        // $profile->fill($form)->save();
-        // return redirect('/');
+       
     }
+    
+    // public function disp()
+    // {
+    //     $path = Storage::disk('s3')->url($file);
+    //     return view('users.card', compact('path'));
+    // }
 }
