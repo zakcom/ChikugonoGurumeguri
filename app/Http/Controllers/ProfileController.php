@@ -46,6 +46,7 @@ class ProfileController extends Controller
             $file = $request->file('profile_img');
             $path = Storage::disk('s3')->putFile('/img', $file, 'public');
             // $profile->profile_img = basename($path);
+            //s3ストレージのディレクトリから画像ファイルを読み込む
             $profile->profile_img = Storage::disk('s3')->url($path);
             $profile->content = $request->content;
             $profile->user_id = \Auth::id();
