@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('content')
     @if(Auth::check())
@@ -25,7 +25,7 @@
     <div class="jumbotron jumbotron-extend">
        
         <div class="container">
-            <h1 class="site-name">みんなで作る「ちっごのグルメ」</h1>
+            <h1 class="site-name">みんなで作る<br>「ちっごのグルメ」</h1>
             {{-- ユーザー登録ページへのリンク --}}
             {!! link_to_route('signup.get', '今すぐ登録', [], ['class' => 'btn btn-lg  btn-success']) !!}
         </div>
