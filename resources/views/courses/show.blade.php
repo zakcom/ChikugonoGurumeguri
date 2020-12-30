@@ -53,14 +53,18 @@
             <div class="card-body">
                 {{ $data->menu }}
             </div>
+            <div>
+                 <img src="{{$data->menu_img }}">
+            </div>
         </div>
         
+       
         <div class="card card-primary mb-3">
             <div class="card-header text-white bg-primary">
                 <h5>コメント</h5>
             </div>
             <div class="card-body">
-                {{ $data->content }}
+                {!! nl2br(e($data->content)) !!}
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="pannel pannel-default">
-                <div class="pannel-heading">お問い合わせ</div>
+                <div class="pannel-heading"><h2>お問い合わせ</h2></div>
                 <div class="pannel-body">
                     <!--{{-- エラーの表示 --}}-->
                     <!--@if ($errors->any())-->

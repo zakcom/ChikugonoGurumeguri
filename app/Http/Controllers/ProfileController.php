@@ -28,8 +28,7 @@ class ProfileController extends Controller
         if(empty($profile)){
             return view('profile.create');   
         }else{
-            // dd("ok");
-            //更新画面には現在あるプロフィールを一緒に持っていくのでcompact('profile')をつける
+        //更新画面には現在あるプロフィールを一緒に持っていくのでcompact('profile')をつける
             return view('profile.edit', compact('profile'));
         }
         
@@ -41,11 +40,8 @@ class ProfileController extends Controller
        
         if($request->isMethod('POST') && $request->file('profile_img'))
         {
-           //storeメソッドで画像を指定のパスに保存
-            // $path  = $request->file('profile_img')->store('public/img'); 
             $file = $request->file('profile_img');
             $path = Storage::disk('s3')->putFile('/img', $file, 'public');
-            // $profile->profile_img = basename($path);
             //s3ストレージのディレクトリから画像ファイルを読み込む
             $profile->profile_img = Storage::disk('s3')->url($path);
             $profile->content = $request->content;
@@ -82,7 +78,6 @@ class ProfileController extends Controller
             // $path = $request->file('profile_img')->store('public/img');
             $file = $request->file('profile_img');
             $path = Storage::disk('s3')->putFile('/img', $file, 'public');
-            // $profile->profile_img = basename($path);
             $profile->profile_img = Storage::disk('s3')->url($path);
             $profile->content = $request->content;
             $profile->save();
@@ -98,9 +93,4 @@ class ProfileController extends Controller
        
     }
     
-    // public function disp()
-    // {
-    //     $path = Storage::disk('s3')->url($file);
-    //     return view('users.card', compact('path'));
-    // }
 }

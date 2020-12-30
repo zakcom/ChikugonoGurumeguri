@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable = ['courses_name', 'adress', 'menu', 'content', 'photo'];
+    protected $fillable = ['courses_name', 'adress', 'menu', 'content', 'photo','menu_img'];
     
     /**
      * このコースを所有するユーザ。（ Userモデルとの関係を定義）

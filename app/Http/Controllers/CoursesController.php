@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use Illuminate\Support\Facades\Storage;
 class CoursesController extends Controller
 {
     
@@ -40,15 +41,42 @@ public function store(Request $request)
     ]);
     
     // 認証済みユーザ（閲覧者）のコースとして作成（リクエストされた値をもとに作成）   
-    $request->user()->courses()->create([
-        'courses_name' => $request->courses_name,
-        'adress' => $request->adress,
-        'menu' => $request->menu,
-        'content' => $request->content,
-        'photo' => $request->photo
-    ]);
+    // $request->user()->courses()->create([
+    //     'courses_name' => $request->courses_name,
+    //     'adress' => $request->adress,
+    //     'menu' => $request->menu,
+    //     'content' => $request->content,
+    //     'photo' => $request->photo
+    // ]);
+    
+    $menu_img = new Course;
+    
+    if($request->isMethod('POST') && $request->file('menu_img'))
+    {
+     $file = $request->file('menu_img');
+     $path = Storage::disk('s3')->putfile('/img',$file,'public');
+     $menu_img->menu_img = Storage::disk('s3')->url($path);
+     $menu_img->courses_name = $request->courses_name;
+     $menu_img->adress = $request->adress;
+     $menu_img->menu = $request->menu;
+     $menu_img->content = $request->content;
+     $menu_img->photo = $request->photo;
+     $menu_img->user_id = \Auth::id();
+     $menu_img->save();
+     return redirect('/');
+    }elseif($request->isMethod('POST') && empty($request->file('menu_img'))){
+     $menu_img->courses_name = $request->courses_name;
+     $menu_img->adress = $request->adress;
+     $menu_img->menu = $request->menu;
+     $menu_img->content = $request->content;
+     $menu_img->photo = $request->photo;
+     $menu_img->user_id = \Auth::id();
+     $menu_img->save();
+     return redirect('/');
+}else{
     //前のURLへリダイレクト
     return redirect('/');
+}
 }
 
 public function destroy($id)

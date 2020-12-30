@@ -13,7 +13,8 @@
         <input type="hidden" name='id' value='{{ $profile->id }}'><br>
         ユーザーID:{{ $profile->user_id }}<br>
         画像:<input type='file' name='profile_img'><br>
+        
         プロフィール文<input type='textarea' name='content' value='{{ $profile->content }}'><br>
-        <input type='submit' value='投稿'>
+        <input type='submit' value='更新する'>
     </form>
 @endsection
