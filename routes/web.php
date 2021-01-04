@@ -27,10 +27,8 @@ Route::get('contact', 'ContactsController@index')->name('contact.get');
 Route::post('contact/confirm', 'ContactsController@confirm')->name('contact/confirm.post');
 Route::post('contact/complete', 'ContactsController@complete')->name('contact/confirm.post');
 
-
-
-
-    
+//検索機能
+Route::get('search', 'SearchController@index')->name('search');
 
 Route::group(['middleware' => ['auth']], function (){
     Route::group(['prefix' => 'user/{id}'], function (){

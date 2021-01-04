@@ -19,8 +19,7 @@
                 </div>
             </div>
         </div>
-    
-    @else
+@else
     <section class="logo">
     <div class="jumbotron jumbotron-extend">
        
