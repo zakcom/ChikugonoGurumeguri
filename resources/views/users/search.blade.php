@@ -1,5 +1,8 @@
+@extends ('layouts.app')
+
+@section('content')
 <div class="row">
-    <div classs="col-sm-4">
+    <div class="col-sm-4">
         <div class="text-center">
             <h3 class="brown-border p-2">ユーザー検索</h3>
         </div>
@@ -16,6 +19,7 @@
        <div class="text-center">
           <h3 class="p-2">ユーザー一覧</h3> 
        </div> 
+       
        <div class="container">
            <!--//検索ボタンが押された時に表示する-->
            @if(!empty($data))
@@ -34,7 +38,8 @@
                 @endforeach
             </div>
             {{ $data->appends(request()->input())->render('pagination::bootstrap-4') }}
-           @endif
-       </div>
+        　 @endif
+        </div>
     </div>
 </div>
+@endsection    
